@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model bangChiTiet {
+  ctId      Int     @id @default(autoincrement())
+  pId       Int
+  spId      Int
+  tenSp     String  @db.VarChar(255)
+  soLuong   Int
+  donGia    Decimal @db.Decimal(18, 0)
+  thanhTien Decimal @db.Decimal(18, 0)
+  sta       String? @default("mới tạo") @db.VarChar(20)
+  uId       Int
+  phieu     phieu   @relation(fields: [pId], references: [pId], onDelete: NoAction, onUpdate: NoAction, map: "bangChiTiet_ibfk_1")
+  sanPham   sanPham @relation(fields: [spId], references: [spId], onDelete: NoAction, onUpdate: NoAction, map: "bangChiTiet_ibfk_2")
+  users     users   @relation(fields: [uId], references: [uId], onDelete: NoAction, onUpdate: NoAction, map: "bangChiTiet_ibfk_3")
+
+  @@index([pId], map: "pId")
+  @@index([spId], map: "spId")
+  @@index([uId], map: "uId")
+}
+
+model doiTac {
+  dtId    Int      @id @default(autoincrement())
+  maDt    String   @db.VarChar(100)
+  tenDt   String   @db.VarChar(255)
+  address String?  @db.Text
+  tax     String?  @db.VarChar(20)
+  phone   String?  @db.VarChar(20)
+  lienHe  String?  @db.VarChar(50)
+  loaiDt  String?  @db.VarChar(3)
+  sta     Boolean? @default(true)
+  uId     Int
+  users   users    @relation(fields: [uId], references: [uId], onDelete: NoAction, onUpdate: NoAction, map: "doiTac_ibfk_1")
+  phieu   phieu[]
+
+  @@index([uId], map: "uId")
+}
+
+model phieu {
+  pId         Int           @id @default(autoincrement())
+  ngay        DateTime      @db.Date
+  loaiPhieu   String        @db.VarChar(3)
+  soPhieu     Int
+  dtId        Int
+  tongTien    Decimal?      @default(0) @db.Decimal(18, 0)
+  thanhToan   Decimal?      @default(0) @db.Decimal(18, 0)
+  conNo       Decimal?      @default(0) @db.Decimal(18, 0)
+  ghiChu      String?       @db.VarChar(100)
+  sta         String?       @default("mới tạo") @db.VarChar(20)
+  uId         Int
+  bangChiTiet bangChiTiet[]
+  doiTac      doiTac        @relation(fields: [dtId], references: [dtId], onDelete: NoAction, onUpdate: NoAction, map: "phieu_ibfk_1")
+  users       users         @relation(fields: [uId], references: [uId], onDelete: NoAction, onUpdate: NoAction, map: "phieu_ibfk_2")
+
+  @@index([dtId], map: "dtId")
+  @@index([uId], map: "uId")
+}
+
+model sanPham {
+  spId        Int           @id @default(autoincrement())
+  danhMuc     String        @db.VarChar(100)
+  maSp        String        @db.VarChar(50)
+  tenSp       String        @db.VarChar(255)
+  dvt         String?       @db.VarChar(20)
+  chiTiet     String?       @db.Text
+  baoHanh     Int?          @default(0)
+  tonKho      Int?          @default(0)
+  giaNhap     Decimal       @db.Decimal(18, 0)
+  giaBan      Decimal       @db.Decimal(18, 0)
+  hinhAnh     Json?
+  sta         Boolean?      @default(true)
+  uId         Int
+  bangChiTiet bangChiTiet[]
+  users       users         @relation(fields: [uId], references: [uId], onDelete: NoAction, onUpdate: NoAction, map: "sanPham_ibfk_1")
+
+  @@index([uId], map: "uId")
+}
+
+model users {
+  uId         Int           @id @default(autoincrement())
+  email       String        @db.VarChar(255)
+  pass        String        @db.VarChar(255)
+  fullName    String?       @db.VarChar(100)
+  phone       String?       @db.VarChar(20)
+  company     String?       @db.VarChar(255)
+  address     String?       @db.Text
+  tax         String?       @db.VarChar(20)
+  sta         Boolean?      @default(true)
+  bangChiTiet bangChiTiet[]
+  doiTac      doiTac[]
+  phieu       phieu[]
+  sanPham     sanPham[]
+}
