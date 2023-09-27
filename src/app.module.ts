@@ -19,7 +19,7 @@ import { JwtModule } from '@nestjs/jwt';
 @Module({
   imports: [
     JwtModule.register({
-      secret: "process.env.JWT_SECRET_KEY", // Thay thế bằng secret key của bạn
+      secret: process.env.JWT_SECRET_KEY, // Thay thế bằng secret key của bạn
       signOptions: { expiresIn: '1d' }, // Thời gian hết hạn của token
     }),
   ],
