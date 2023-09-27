@@ -9,8 +9,8 @@ async function bootstrap() {
 
   //code của swager
   const config = new DocumentBuilder()
-    .setTitle('Thuan Phat')
-    .setVersion('v1.0')
+    .setTitle('Thuan-Phat')
+    .setVersion('v0.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
