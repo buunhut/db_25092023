@@ -42,10 +42,10 @@ export class UserService {
       if (checkEmail) {
         return this.extraService.response(409, 'tài khoản đã tồn tại', email);
       } else {
-        const hashPass = await bcrypt.hash(body.pass, 12);
+        // const hashPass = await bcrypt.hash(body.pass, 12);
         const data = {
           ...body,
-          pass: hashPass,
+          // pass: hashPass,
         };
         const create = await prisma.users.create({
           data,
@@ -83,7 +83,14 @@ export class UserService {
         },
       });
       if (checkEmail) {
-        const checkPass = await bcrypt.compare(pass, checkEmail.pass);
+        // const checkPass = await bcrypt.compare(pass, checkEmail.pass);
+        const checkPass = await prisma.users.findFirst({
+          where: {
+            email,
+            pass,
+            sta: true,
+          }
+        })
         if (checkPass) {
           const token = await this.extraService.signToken(checkEmail);
           const { email, fullName, phone, company, address, tax } = checkEmail;
