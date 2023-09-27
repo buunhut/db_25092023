@@ -103,6 +103,8 @@ export class UserService {
             token,
           };
           return this.extraService.response(200, 'đăng nhập thành công', res);
+        } else {
+          return this.extraService.response(404, 'mật khẩu không đúng', pass)
         }
       } else {
         return this.extraService.response(404, 'tài khoản không đúng', email);
