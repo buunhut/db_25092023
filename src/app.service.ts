@@ -27,7 +27,6 @@ export class UserService {
   constructor(
     private readonly extraService: ExtraService,
 
-    private readonly jwt: JwtService,
   ) {}
 
   async create(body: DangKyDto) {

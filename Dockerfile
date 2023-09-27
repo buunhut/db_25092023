@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 COPY package*.json .
 
 # cài node module trên server
-RUN yarn install 
+RUN yarn install --legacy-peer-deps
 
 COPY prisma ./prisma/
 
