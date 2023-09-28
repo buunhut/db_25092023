@@ -15,6 +15,11 @@ import {
 } from './app.service';
 import { AuthGuard, ExtraService } from './app.extra';
 import { JwtModule } from '@nestjs/jwt';
+import { config } from 'dotenv';
+config({
+  path: './.env',
+});
+
 
 @Module({
   imports: [

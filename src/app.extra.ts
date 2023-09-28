@@ -1,6 +1,11 @@
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenDto } from './app.dto';
+import { config } from 'dotenv';
+config({
+  path: './.env',
+});
+
 
 @Injectable()
 export class ExtraService {
