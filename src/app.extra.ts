@@ -7,7 +7,10 @@ export class ExtraService {
   constructor(private readonly jwtService: JwtService) {}
 
   async signToken(data: TokenDto) {
-    const result = await this.jwtService.sign(data);
+    const result = this.jwtService.sign(data, {
+      expiresIn: '1d',
+      secret: process.env.JWT_SECRET_KEY
+    });
     return result;
   }
 
