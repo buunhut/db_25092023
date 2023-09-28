@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import {
@@ -33,6 +34,7 @@ import {
 import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { AuthGuard } from './app.extra';
 
 @ApiTags('Users')
 @Controller()
@@ -50,6 +52,7 @@ export class UserController {
   }
 }
 
+@UseGuards(AuthGuard)
 @ApiTags('San-Pham')
 @Controller()
 export class SanPhamController {
@@ -125,6 +128,7 @@ export class SanPhamController {
   }
 }
 
+@UseGuards(AuthGuard)
 @ApiTags('Doi-Tac')
 @Controller()
 export class DoiTacController {
@@ -175,6 +179,7 @@ export class DoiTacController {
   }
 }
 
+@UseGuards(AuthGuard)
 @ApiTags('Phieu')
 @Controller()
 export class PhieuController {
@@ -234,6 +239,7 @@ export class PhieuController {
   }
 }
 
+@UseGuards(AuthGuard)
 @ApiTags('Chi-Tiet')
 @Controller()
 export class ChiTietController {

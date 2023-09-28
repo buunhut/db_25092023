@@ -13,13 +13,13 @@ import {
   SanPhamService,
   UserService,
 } from './app.service';
-import { ExtraService } from './app.extra';
+import { AuthGuard, ExtraService } from './app.extra';
 import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
     JwtModule.register({
-      secretOrPrivateKey: process.env.JWT_SECRET_KEY, // Thay thế bằng secret key của bạn
+      secret: process.env.JWT_SECRET_KEY, // Thay thế bằng secret key của bạn
       // secretOrPrivateKey: 'NDOEJS33', // Thay thế bằng secret key của bạn
       signOptions: { expiresIn: '1d' }, // Thời gian hết hạn của token
     }),
@@ -38,6 +38,7 @@ import { JwtModule } from '@nestjs/jwt';
     PhieuService,
     ChiTietService,
     ExtraService,
+    AuthGuard
   ],
 })
 export class AppModule {}

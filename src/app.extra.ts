@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { TokenDto } from './app.dto';
 
@@ -27,3 +27,23 @@ export class ExtraService {
     };
   }
 }
+
+//chức năng chặn API
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private readonly jwtService: JwtService) {}
+  async canActivate(context: ExecutionContext) {
+    try {
+      const request = context.switchToHttp().getRequest(); //bắt được request
+      const { token } = request.headers;
+      const verify = this.jwtService.verify(token); //verify token
+      if (!verify) {
+        throw new UnauthorizedException('token không hợp lệ');
+      }
+      return true; //return true để next()
+    } catch (error) {
+      throw new UnauthorizedException('token không hợp lệ');
+    }
+  }
+}
+
