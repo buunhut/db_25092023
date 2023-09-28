@@ -1466,6 +1466,14 @@ export class PhieuService {
       throw error;
     }
   }
+
+  //viết chức năng thu tiền, trả tiền
+  async traTien(token: string){
+    return 'code trả tiền nợ'
+  }
+  async traNoCacPhieuDaChon(token: string){
+    return 'code trả các phiếu đã chọn'
+  }
 }
 
 //bảng chiTiet

@@ -1,11 +1,12 @@
-FROM node:20
+FROM node:18
 
 WORKDIR /usr/src/app
 
 COPY package*.json .
 
 # cài node module trên server
-RUN yarn install --legacy-peer-deps
+RUN yarn install
+# RUN yarn install --legacy-peer-deps
 
 COPY prisma ./prisma/
 
@@ -21,9 +22,9 @@ CMD ["yarn","start"]
 # dùng dịch vụ mysql của docker: lệnh phía dưới
 # sudo apt update
 # sudo apt upgrade
-# apt install git
 # curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 # apt install docker.io
+# apt install git
 
 # docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 mysql:latest
 
@@ -40,7 +41,8 @@ CMD ["yarn","start"]
 # Password: changeme
 # CHỌN host => proxy host => add proxy host
 
-#ssh-keygen -R "61.14.233.80"
-#ssh-keyscan -p 2018 61.14.233.80 >> ~/.ssh/known_hosts
-#curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+# ssh-keygen -R "61.14.233.80"
+# ssh-keyscan -p 2018 61.14.233.80 >> ~/.ssh/known_hosts
+# curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
 
+# sudo apt-get install gcc g++ make

@@ -224,6 +224,15 @@ export class PhieuController {
   readPhieuXuatNo(@Headers('token') token: string) {
     return this.appService.readPhieuXuatNo(token);
   }
+
+  @Post('api/tra-tien')
+  traTien(@Headers('token') token: string){
+    return this.appService.traTien(token);
+  }
+  @Post('api/tra-cac-phieu-da-chon')
+  traNoCacPhieuDaChon(@Headers('token') token: string){
+    return this.appService.traNoCacPhieuDaChon(token);
+  }
 }
 
 @ApiTags('Chi-Tiet')
