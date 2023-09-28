@@ -20,7 +20,6 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     JwtModule.register({
       secret: process.env.JWT_SECRET_KEY, // Thay thế bằng secret key của bạn
-      // secretOrPrivateKey: 'NDOEJS33', // Thay thế bằng secret key của bạn
       signOptions: { expiresIn: '1d' }, // Thời gian hết hạn của token
     }),
   ],

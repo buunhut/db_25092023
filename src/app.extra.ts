@@ -36,7 +36,9 @@ export class AuthGuard implements CanActivate {
     try {
       const request = context.switchToHttp().getRequest(); //bắt được request
       const { token } = request.headers;
-      const verify = this.jwtService.verify(token); //verify token
+      const verify = this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET_KEY
+      }); //verify token
       if (!verify) {
         throw new UnauthorizedException('token không hợp lệ');
       }
