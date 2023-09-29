@@ -1448,6 +1448,7 @@ export class PhieuService {
         where: {
           loaiPhieu: 'px',
           sta: 'lưu',
+          uId,
           conNo: {
             gt: 0,
           },
