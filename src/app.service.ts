@@ -1447,19 +1447,57 @@ export class PhieuService {
       const phieuNo = await prisma.phieu.findMany({
         where: {
           loaiPhieu: 'px',
-          sta: 'lưu',
           uId,
+          sta: 'lưu',
           conNo: {
             gt: 0,
           },
         },
+        select: {
+          doiTac: {
+            select: {
+              maDt: true,
+              tenDt: true,
+            },
+          },
+          pId: true,
+          ngay: true,
+          loaiPhieu: true,
+          soPhieu: true,
+          tongTien: true,
+          thanhToan: true,
+          conNo: true,
+          ghiChu: true,
+        },
       });
       if (phieuNo.length > 0) {
-        return this.extraService.response(
-          200,
-          'danh sách phiếu xuất nợ',
-          phieuNo,
-        );
+        const res = phieuNo.map((item) => {
+          const {
+            pId,
+            ngay,
+            loaiPhieu,
+            soPhieu,
+            tongTien,
+            thanhToan,
+            conNo,
+            ghiChu,
+            doiTac,
+          } = item;
+          const { maDt, tenDt } = doiTac;
+          return {
+            pId,
+            ngay: moment(ngay).format('DD/MM/YYYY'),
+            loaiPhieu,
+            soPhieu,
+            maDt,
+            tenDt,
+            tongTien: Number(tongTien),
+            thanhToan: Number(thanhToan),
+            conNo: Number(conNo),
+            ghiChu,
+          };
+        });
+        return this.extraService.response(200, 'danh sách phiếu nhập nợ', res);
       } else {
         return this.extraService.response(404, 'not found', null);
       }
