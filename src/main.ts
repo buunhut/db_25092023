@@ -13,8 +13,11 @@ async function bootstrap() {
   //code của swager
   const config = new DocumentBuilder()
     .setTitle('Thuan-Phat')
-    .setVersion('v0.0')
+    .setVersion('v0.1')
+    .setDescription('KHÔNG BIẾT SAO CỨ VÀI NGÀY LÀ SQL CỦA VPS KHÔNG CHẠY ĐƯỢC, CÓ GÌ MENTOR NHẮN EM, THANK YOU')
+
     .build();
+    
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 

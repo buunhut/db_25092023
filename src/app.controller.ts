@@ -230,12 +230,12 @@ export class PhieuController {
   }
 
   @Post('api/tra-tien')
-  traTien(@Headers('token') token: string){
-    return this.appService.traTien(token);
+  traTien(@Headers('token') token: string, body:SavePhieuDto){
+    return this.appService.traTien(token, body);
   }
   @Post('api/tra-cac-phieu-da-chon')
-  traNoCacPhieuDaChon(@Headers('token') token: string){
-    return this.appService.traNoCacPhieuDaChon(token);
+  traNoCacPhieuDaChon(@Headers('token') token: string, body: any){
+    return this.appService.traNoCacPhieuDaChon(token, body);
   }
 }
 

@@ -1507,11 +1507,20 @@ export class PhieuService {
   }
 
   //viết chức năng thu tiền, trả tiền
-  async traTien(token: string){
-    return 'code trả tiền nợ'
+  async traTien(token: string, body:SavePhieuDto){
+    try {
+      const uId = await this.extraService.getUId(token);
+
+    } catch (error) {
+      throw error
+    }
   }
-  async traNoCacPhieuDaChon(token: string){
-    return 'code trả các phiếu đã chọn'
+  async traNoCacPhieuDaChon(token: string, body: any){
+    try {
+      
+    } catch (error) {
+      throw error
+    }
   }
 }
 
