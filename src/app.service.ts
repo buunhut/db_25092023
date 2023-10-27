@@ -127,6 +127,8 @@ export class SanPhamService {
       const uId = await this.extraService.getUId(token);
       const { maSp, tenSp, baoHanh, giaNhap, giaBan } = body;
       const hinhAnh = files.map((item) => item.filename);
+      console.log(hinhAnh)
+
       const checkMa = await prisma.sanPham.findFirst({
         where: {
           maSp,

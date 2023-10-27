@@ -14,7 +14,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('Thuan-Phat')
     .setVersion('v0.1')
-    .setDescription('KHÔNG BIẾT SAO CỨ VÀI NGÀY LÀ SQL CỦA VPS KHÔNG CHẠY ĐƯỢC, CÓ GÌ MENTOR NHẮN EM, THANK YOU')
+    .setDescription('Hello :)')
 
     .build();
     
@@ -32,16 +32,16 @@ bootstrap();
 // const document = SwaggerModule.createDocument(app, config);
 // SwaggerModule.setup("swagger", app, document)
 
-//yarn add @nestjs/jwt, lệnh cài jwt
+// yarn add @nestjs/jwt, lệnh cài jwt
 // //code config trong app.module.ts
 // JwtModule.register({
 //   secret: process.env.JWT_SECRET, // Thay thế bằng secret key của bạn
 //   signOptions: { expiresIn: '1h' }, // Thời gian hết hạn của token
 // }),
 
-//yarn add bcryptjs, lệnh cài đặt bcryptjs để mã hoá password
-//yarn add prisma @prisma/client, lệnh cài đặt prisma
-//yarn prisma init, lệnh tạo schema.prisma và .env
+// yarn add bcryptjs, lệnh cài đặt bcryptjs để mã hoá password
+// yarn add prisma @prisma/client, lệnh cài đặt prisma
+// yarn prisma init, lệnh tạo schema.prisma và .env
 
 //cấu hình chuỗi kết nối csdl
 //vào .env sửa thông tin kết nối csdl DATABASE_URL="mysql://root:1234@localhost:3306/db_demo?schema=public"
@@ -49,7 +49,7 @@ bootstrap();
 // yarn prisma db pull, map các bảng về
 // yarn prisma generate, đẩy các bảng vào prisma/client để dùng
 
-//nest g resource nguoiDung --no-spec, lệnh tạo cấu trúc thư mục chuẩn của nest, (mình ít dùng vì viết hết vào app)
+// nest g resource nguoiDung --no-spec, lệnh tạo cấu trúc thư mục chuẩn của nest, (mình ít dùng vì viết hết vào app)
 
 //mình quan tâm 2 file app.controller và app.service
 //app.controller viết các routes api
